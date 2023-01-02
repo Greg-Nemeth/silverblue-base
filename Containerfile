@@ -19,7 +19,7 @@ RUN rpm-ostree override remove firefox firefox-langpacks && \
     gnome-shell-extension-user-theme \
     gnome-shell-extension-blur-my-shell \
     openssl gnome-shell-extension-gsconnect nautilus-gsconnect blackbox-terminal && \
-    gnome-extensions install widget@aylur && gnome-extensions install rounded-window-corners@yilozt \
+    gnome-extensions enable widget@aylur && gnome-extensions enable rounded-window-corners@yilozt \
     horizontal-workspace-indicator@tty2.io && \
     fc-cache -f /usr/share/fonts/ubuntu && \
     sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
