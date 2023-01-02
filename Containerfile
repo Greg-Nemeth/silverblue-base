@@ -5,8 +5,8 @@ FROM ghcr.io/cgwalters/fedora-silverblue:${FEDORA_MAJOR_VERSION}
 
 COPY etc /etc
 COPY usr /usr
-COPY rounded-window-cornersyilozt.v10.shell-extension.zip /usr/tmp
-COPY widgetsaylur.v17.shell-extension.zip /usr/tmp
+COPY rounded-window-cornersyilozt.v10.shell-extension.zip /usr/tmp/corners.zip
+COPY widgetsaylur.v17.shell-extension.zip /usr/tmp/widgets.zip
 COPY ublue-firstboot /usr/bin
 
 
@@ -21,8 +21,8 @@ RUN rpm-ostree override remove firefox firefox-langpacks && \
     gnome-shell-extension-blur-my-shell \
     openssl gnome-shell-extension-gsconnect nautilus-gsconnect blackbox-terminal && \
     mkdir -p /usr/share/gnome-shell/extensions/{widgets@aylur,rounded-window-corners@yilozt} && \
-    unzip -q /usr/tmp/widgetsaylur.v17.shell-extension.zip -d /usr/share/gnome-shell/extensions/widgets@aylur/ && \
-    unzip -q /usr/tmp/rounded-window-cornersyilozt.v10.shell-extensions.zip -d /usr/share/gnome-shell/extensions/rounded-window-corners@yilozt/ && \
+    unzip -q /usr/tmp/widgets.zip -d /usr/share/gnome-shell/extensions/widgets@aylur/ && \
+    unzip -q /usr/tmp/corners.zip -d /usr/share/gnome-shell/extensions/rounded-window-corners@yilozt/ && \
     gnome-extensions enable rounded-window-corners@yilozt && gnome-extensions enable widgets@aylur && \
     fc-cache -f /usr/share/fonts/ubuntu && \
     sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
