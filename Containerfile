@@ -15,8 +15,14 @@ RUN wget https://copr.fedorainfracloud.org/coprs/lyessaadi/blackbox/repo/fedora-
 
 RUN rpm-ostree override remove firefox firefox-langpacks && \
     rpm-ostree install distrobox gnome-tweaks \
-    gnome-shell-extension-appindicator gnome-shell-extension-dash-to-dock yaru-theme \
+    gnome-shell-extension-appindicator yaru-theme \
+    gnome-shell-extension-workspace-indicator gnome-shell-extension-auto-move-windows \
+    gnome-shell-extension-pop-shell \
+    gnome-shell-extension-user-theme \
+    gnome-shell-extension-blur-my-shell \
     openssl gnome-shell-extension-gsconnect nautilus-gsconnect blackbox-terminal && \
+    gnome-extensions install widget@aylur rounded-window-corners@yilozt \
+    horizontal-workspace-indicator@tty2.io && \
     fc-cache -f /usr/share/fonts/ubuntu && \
     sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
     systemctl enable rpm-ostreed-automatic.timer && \
