@@ -1,11 +1,14 @@
 ARG FEDORA_MAJOR_VERSION=37
-
+ARG CORNERS=rounded-window-cornersyilozt.v10.shell-extension.zip
+ARG WIDGETS=widgetsaylur.v17.shell-extension.zip
+ARG TMP=/usr/tmp
 FROM ghcr.io/cgwalters/fedora-silverblue:${FEDORA_MAJOR_VERSION}
 # See https://pagure.io/releng/issue/11047 for final location
 
 COPY etc /etc
 COPY usr /usr
-
+COPY ${CORNERS} ${TMP}
+COPY ${WIDGETS} ${TMP}
 COPY ublue-firstboot /usr/bin
 
 
@@ -19,8 +22,7 @@ RUN rpm-ostree override remove firefox firefox-langpacks && \
     gnome-shell-extension-user-theme \
     gnome-shell-extension-blur-my-shell \
     openssl gnome-shell-extension-gsconnect nautilus-gsconnect blackbox-terminal && \
-    gnome-extensions enable widget@aylur && gnome-extensions enable rounded-window-corners@yilozt \
-    horizontal-workspace-indicator@tty2.io && \
+    gnome-extensions install ${TMP}/${WIDGET} && gnome-extensions install ${TMP}/${CORNERS} && \
     fc-cache -f /usr/share/fonts/ubuntu && \
     sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
     systemctl enable rpm-ostreed-automatic.timer && \
