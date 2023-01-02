@@ -55,11 +55,11 @@ if [ "$?" != 0 ] ; then
 fi
 echo "25"
 
-echo "# Installing Firefox"
-/usr/bin/flatpak install --user --noninteractive flathub org.mozilla.firefox
+echo "# Installing Chrome"
+/usr/bin/flatpak install --user --noninteractive flathub com.google.Chrome
 if [ "$?" != 0 ] ; then
         zenity --error \
-          --text="Installing Firefox Failed"
+          --text="Installing Chrome Failed"
         exit 1
 fi
 echo "30"
@@ -82,13 +82,7 @@ if [ "$?" != 0 ] ; then
 fi
 echo "50"
 
-echo "# Installing LibreOffice"
-/usr/bin/flatpak install --user --noninteractive flathub org.libreoffice.LibreOffice
-if [ "$?" != 0 ] ; then
-        zenity --error \
-          --text="Installing LibreOffice Failed"
-        exit 1
-fi
+
 echo "70"
 
 echo "# Installing DejaDup Backup"
